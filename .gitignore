@@ -1,39 +1,7 @@
-# Dependencies
-node_modules/
-.pnpm-store/
-
-# Environment & Secrets
-.env
-.env.local
-.env.*.local
-local.properties
-google-services.json
-*.keystore
-*.jks
-*.p12
-
-# Build outputs
-www/
-android/app/build/
-android/.gradle/
-dist/
-out/
-*.apk
-*.aab
-
-# IDE
-.idea/
-.vscode/
-*.iml
-
-# OS
 .DS_Store
-Thumbs.db
+.env
+/node_modules/
 
-# Capacitor
-android/app/src/main/assets/public/
-android/capacitor.settings.gradle
-
-# Logs
-*.log
-build.log
+# React Router
+/.react-router/
+/build/

@@ -1,103 +1,88 @@
-# 🐾 Pawket
+# Welcome to React Router!
 
-**Pocket-sized cat-paw AI** — Cherry Studio Android port
+A modern, production-ready template for building full-stack React applications using React Router.
 
-A mobile AI chat client built with Capacitor + Android, featuring Xiaomi MiMo as the default LLM provider.
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
 
 ## Features
 
-- 💬 Clean chat interface with dark theme
-- 🤖 OpenAI-compatible API support
-- 🔐 Secure API key storage (local SharedPreferences)
-- 📱 Native Android app via Capacitor
-- 🐱 MiMo v2.5-pro as default model
+- 🚀 Server-side rendering
+- ⚡️ Hot Module Replacement (HMR)
+- 📦 Asset bundling and optimization
+- 🔄 Data loading and mutations
+- 🔒 TypeScript by default
+- 🎉 TailwindCSS for styling
+- 📖 [React Router docs](https://reactrouter.com/)
 
-## Quick Start
+## Getting Started
 
-### Prerequisites
+### Installation
 
-- JDK 21+
-- Android SDK (API 34)
-- Node.js 18+
-
-### Build
+Install the dependencies:
 
 ```bash
-# Install dependencies
 npm install
-
-# Build web assets
-mkdir -p www && cp index.html www/
-
-# Sync Capacitor
-npx cap sync android
-
-# Build APK
-cd android
-export JAVA_HOME=/path/to/jdk-21
-export ANDROID_SDK_ROOT=/path/to/android-sdk
-./gradlew assembleDebug
 ```
 
-APK output: `android/app/build/outputs/apk/debug/app-debug.apk`
+### Development
 
-### Install
+Start the development server with HMR:
 
 ```bash
-adb install android/app/build/outputs/apk/debug/app-debug.apk
+npm run dev
 ```
 
-## MiMo Provider Configuration
+Your application will be available at `http://localhost:5173`.
 
-Pawket uses Xiaomi MiMo as the default LLM provider. To configure:
+## Building for Production
 
-1. Get your API key from the Xiaomi MiMo provider console
-2. Long-press the provider badge (🐾 MiMo v2.5-pro) in the app header
-3. Enter your configuration:
-   - **API Base URL**: `https://token-plan-cn.xiaomimo.com/v1`
-   - **API Key**: Your personal API key
-   - **Model**: `mimo-v2.5-pro`
-
-### Available Models
-
-| Model | Description |
-|-------|-------------|
-| `mimo-v2.5` | Standard model |
-| `mimo-v2.5-pro` | Advanced model (default) |
-| `mimo-v2.5-tts` | Text-to-speech model |
-
-### Environment Variables (Development)
-
-For development, create a `.env` file (never commit this!):
+Create a production build:
 
 ```bash
-MIMO_API_KEY=your_api_key_here
-MIMO_BASE_URL=https://token-plan-cn.xiaomimo.com/v1
-MIMO_MODEL=mimo-v2.5-pro
+npm run build
 ```
 
-See `.env.example` for the template.
+## Deployment
 
-## Security
+### Docker Deployment
 
-- API keys are stored locally in Android SharedPreferences
-- No keys are hardcoded in source code
-- `.env` files are gitignored
-- See [SECURITY.md](SECURITY.md) for details
+To build and run using Docker:
 
-## Architecture
+```bash
+docker build -t my-app .
 
-- **Frontend**: HTML/CSS/JS chat interface
-- **Wrapper**: Capacitor 7.x for Android
-- **Build**: Gradle 8.14.3 + Android SDK 34
-- **Provider**: OpenAI-compatible API (MiMo)
+# Run the container
+docker run -p 3000:3000 my-app
+```
 
-## License
+The containerized application can be deployed to any platform that supports Docker, including:
 
-MIT
+- AWS ECS
+- Google Cloud Run
+- Azure Container Apps
+- Digital Ocean App Platform
+- Fly.io
+- Railway
 
-## Credits
+### DIY Deployment
 
-- [Cherry Studio](https://github.com/CherryHQ/cherry-studio) — Original desktop client
-- [Capacitor](https://capacitorjs.com/) — Cross-platform native runtime
-- [Xiaomi MiMo](https://xiaomi.mimo.com) — LLM provider
+If you're familiar with deploying Node applications, the built-in app server is production-ready.
+
+Make sure to deploy the output of `npm run build`
+
+```
+├── package.json
+├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
+├── build/
+│   ├── client/    # Static assets
+│   └── server/    # Server-side code
+```
+
+## Styling
+
+This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting
+experience. You can use whatever CSS framework you prefer.
+
+---
+
+Built with ❤️ using React Router.

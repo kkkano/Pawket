@@ -1,78 +1,59 @@
-export interface Message {
+export interface Provider {
   id: string
-  role: 'user' | 'assistant' | 'system'
-  content: string
-  timestamp: number
-  status: 'sending' | 'streaming' | 'done' | 'error'
-  error?: string
-  model?: string
-  provider?: string
-  tokens?: {
-    prompt: number
-    completion: number
-  }
+  name: string
+  apiUrl: string
+  apiKey: string
+  icon: string
+  models: Model[]
+  isBuiltIn?: boolean
+}
+
+export interface Model {
+  id: string
+  name: string
+  supportsThinking?: boolean
+  supportsVision?: boolean
 }
 
 export interface Conversation {
   id: string
   title: string
+  systemPrompt: string
+  modelId: string
+  providerId: string
+  temperature: number
+  maxTokens: number
+  reasoningEffort: ReasoningEffort
+  webSearch: boolean
   messages: Message[]
+  isPinned?: boolean
   createdAt: number
   updatedAt: number
-  model: string
-  provider: string
-  systemPrompt?: string
 }
 
-export interface Provider {
+export type ReasoningEffort = 'none' | 'minimal' | 'low' | 'medium' | 'high' | 'xhigh' | 'auto'
+
+export interface Message {
   id: string
-  name: string
-  type: 'openai-compatible' | 'anthropic' | 'gemini'
-  baseUrl: string
-  apiKey: string
-  defaultModel: string
-  availableModels: string[]
+  role: 'user' | 'assistant' | 'system'
+  content: string
+  reasoningContent?: string
+  isStreaming?: boolean
+  error?: string
+  tokenUsage?: TokenUsage
+  createdAt: number
 }
 
-export interface ChatRequest {
-  model: string
-  messages: Array<{
-    role: 'user' | 'assistant' | 'system'
-    content: string
-  }>
-  stream?: boolean
-  temperature?: number
-  max_tokens?: number
-  top_p?: number
+export interface TokenUsage {
+  promptTokens: number
+  completionTokens: number
+  totalTokens: number
+  durationMs?: number
 }
 
-export interface ChatResponse {
-  id: string
-  choices: Array<{
-    index: number
-    message: {
-      role: string
-      content: string
-    }
-    finish_reason: string
-  }>
-  usage: {
-    prompt_tokens: number
-    completion_tokens: number
-    total_tokens: number
-  }
+export interface AppSettings {
+  theme: 'dark' | 'light'
+  sendOnEnter: boolean
+  showTimestamp: boolean
+  fontSize: number
 }
-
-export interface StreamChunk {
-  id: string
-  choices: Array<{
-    index: number
-    delta: {
-      role?: string
-      content?: string
-    }
-    finish_reason: string | null
-  }>
-}
-
-export type ThemeMode = 'light' | 'dark' | 'system'
