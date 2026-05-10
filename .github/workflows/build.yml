@@ -30,9 +30,7 @@ jobs:
         run: npm install
 
       - name: Build web assets
-        run: |
-          mkdir -p www
-          cp src/* www/
+        run: npm run build
 
       - name: Sync Capacitor
         run: npx cap sync android
@@ -50,7 +48,6 @@ jobs:
           [ -f "$APK" ] || { echo "❌ APK not found"; exit 1; }
           SIZE=$(stat -c%s "$APK")
           [ "$SIZE" -gt 1048576 ] || { echo "❌ APK too small: $SIZE bytes"; exit 1; }
-          file "$APK" | grep -q "Zip" || echo "⚠️ Not a zip, but continuing"
           echo "✅ APK verified: $(($SIZE/1024)) KB"
 
       - name: Upload APK artifact
