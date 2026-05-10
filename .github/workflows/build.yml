@@ -32,7 +32,7 @@ jobs:
       - name: Build web assets
         run: |
           mkdir -p www
-          cp index.html www/
+          cp src/* www/
 
       - name: Sync Capacitor
         run: npx cap sync android
