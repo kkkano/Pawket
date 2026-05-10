@@ -35,7 +35,7 @@ jobs:
           cp src/* www/
 
       - name: Sync Capacitor
-        run: npx cap sync android --no-open
+        run: npx cap sync android
 
       - name: Make gradlew executable
         run: chmod +x android/gradlew
