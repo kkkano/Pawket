@@ -33,9 +33,13 @@ jobs:
         run: |
           mkdir -p www
           cp src/* www/
+          ls -la www/
+          cat www/index.html | head -5
 
       - name: Sync Capacitor
-        run: npx cap sync android
+        run: |
+          npx cap sync android --no-open
+          ls -la www/
 
       - name: Make gradlew executable
         run: chmod +x android/gradlew
